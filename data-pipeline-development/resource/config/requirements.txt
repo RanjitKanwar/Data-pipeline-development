@@ -1,0 +1,7 @@
+snowflake-sqlalchemy
+mysqlclient
+typeguard
+findspark
+psycopg2
+pandas==1.2.5
+awswrangler

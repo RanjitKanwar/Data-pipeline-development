@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.finxera</groupId>
+	<artifactId>unicorn-data-pipeline</artifactId>
+	<packaging>pom</packaging>
+	<version>${artifact-version}</version>
+	<name>unicorn-data-pipeline</name>
+	<description>Python Installation Package for DNA History</description>
+	<repositories>
+		<repository>
+			<id>Finxera</id>
+			<name>Finxera Repo</name>
+			<url>https://nex1.finxera.net/nexus/content/groups/public</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<configuration>
+							<executable>python3.7</executable>
+							<workingDirectory>./</workingDirectory>
+							<arguments>
+								<argument>setup.py</argument>
+								<argument>bdist_egg</argument>
+							</arguments>
+						</configuration>
+						<id>python_build</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+            <plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+              		<execution>
+                		<id>create-zip</id>
+                		<phase>package</phase>
+                		<goals>
+                  			<goal>single</goal>
+                		</goals>
+                		<configuration>
+                  			<appendAssemblyId>false</appendAssemblyId>
+                  			<descriptors>
+                    			<descriptor>assembly-zip.xml</descriptor>
+                  			</descriptors>
+                  			<finalName>/tmp/dist</finalName> <!-- Name of zip file -->
+                		</configuration>
+             		</execution>
+        </executions>
+      </plugin>
+		</plugins>
+	</build>
+	<properties>
+		<artifact-version>1.2.0-SNAPSHOT</artifact-version>
+		<release-base-commit-hash>placeholder</release-base-commit-hash>
+	</properties>
+</project>
