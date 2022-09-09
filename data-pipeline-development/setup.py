@@ -7,7 +7,7 @@ setup(
     packages=find_packages(where='src'),
     url='',
     license='',
-    author='manishkundu',
-    author_email='manish.kundu@finxera.com',
+    author='ranjitkanwar,
+    author_email='ranjit.kanwar@gmail.com',
     description='Data Pipeline', install_requires=['awswrangler']
 )
